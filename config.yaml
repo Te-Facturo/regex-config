@@ -1,0 +1,14 @@
+---
+COSTCO:
+  ticket_id: "([0-9]{20})"
+
+MEFACTUR:
+  folio: "FOLIO:(.*)"
+  codigo_facturacion: "CODIGO FACT:(.*)"
+
+OXXO: 
+  fecha_venta: "([1-3][0-9]/[0-1][1-9]/[2][0][2][0-9])"
+  folio_venta: "Vta(.*)"
+  id_venta: "ID(.*)"
+  total: "Total(.*)"
+
