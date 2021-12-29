@@ -12,3 +12,7 @@ OXXO:
   id_venta: "ID(.*)"
   total: "Total(.*)"
 
+PETCO:
+  ticket: "(\d{17})"
+  gran_total: "Gran Total:\n.+\n(.*)"
+
