@@ -13,6 +13,6 @@ OXXO:
   total: 'Total(.*)'
 
 PETCO:
-  ticket: '(\\d{17})'
-  gran_total: 'Gran Total:\\n.+\\n(.*)'
+  ticket: (\d{17})
+  gran_total: Gran Total:\n.+\n(.*)
 
