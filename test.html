@@ -1,0 +1,400 @@
+{{#with answers}}
+<table>
+    <tbody>
+        <tr>
+            <td><b>Empresa: </b>Productos IoT</td>
+            <td><b>Instalador: </b>{{instalador.[0]}}</td>
+            <td><b>Fecha: </b>{{dateStamp.[0].provided.time}}</td>
+        </tr>
+    </tbody>
+</table>
+
+<table>
+    <thead>
+        <tr>
+            <th colspan="2">DATOS GENERALES</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            {{#pf:if visitaFalso.[0] "!is" "Si"}}
+            <td><b>Tipo de servicio:
+                </b>{{motivo.[0].[0]}}</td>
+            {{else}}
+            <td><b>Tipo de servicio:
+                </b>Visita en falso</td>
+
+            {{/pf:if}}
+
+            <td><b>Folio NOE / # de Incidente:
+                </b>{{noe.[0]}}</td>
+        </tr>
+        <tr>
+            <td><b>Razón Social:
+                </b>{{razonSocial.[0]}}
+            </td>
+            <td><b>Nombre de contacto:
+                </b>{{contacto.[0]}}</td>
+        </tr>
+        <tr>
+            <td><b>Lugar de atención :
+                </b>{{lugarAtencion.[0]}}</td>
+            <td><b>Teléfono de contacto:
+                </b>{{telefono1.[0]}}</td>
+        </tr>
+        <tr>
+
+            <td><b>Correo de contacto:
+                </b>{{correoContacto.[0]}}</td>
+
+        </tr>
+    </tbody>
+</table>
+
+{{#pf:if visitaFalso.[0] "!is" "Si"}}
+
+
+<table>
+    <thead>
+        <tr>
+            <th colspan="3">DATOS GPS</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            {{#pf:if serieBarcode.[0].[0].data "contains" "G"}}
+            <td><b>Número de serie:
+                </b>{{serieBarcode.[0].[0].data}}</td>
+            {{else}}
+            <td><b>Número de serie:
+                </b>{{serieGPS.[0].[0]}}</td>
+            {{/pf:if}}
+            <td><b>Arnes:
+                </b>{{arnes.[0].[0]}}</td>
+            <td><b>Cincho:
+                </b>{{cincho.[0].[0]}}</td>
+        </tr>
+
+    </tbody>
+</table>
+
+{{#pf:if motivo.[0].[0] "!is" "Desinstalación"}}
+
+<table>
+    <thead>
+        <tr>
+            <th colspan="2">DATOS VEHÍCULO INSTALACIÓN</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+
+            <td><b>Marca:
+                </b>{{marcaIns.[0].[0]}}</td>
+            <td><b>Modelo:
+                </b>{{modeloIns.[0].[0]}}</td>
+
+        </tr>
+        <tr>
+            <td><b>Año:
+                </b>{{anoIns.[0].[0]}}</td>
+            <td><b>Número economico:
+                </b>{{economicoIns.[0].[0]}}</td>
+        </tr>
+        <tr>
+            <td><b>Placas:
+                </b>{{placasIns.[0].[0]}}</td>
+            <td><b>VIN:
+                </b>{{vin1.[0].[0]}}</td>
+        </tr>
+
+    </tbody>
+</table>
+
+{{/pf:if}}
+
+
+{{#pf:if motivo.[0].[0] "matches" "^(Intercambio|Desinstalación)"}}
+
+<table>
+    <thead>
+        <tr>
+            <th colspan="2">DATOS VEHÍCULO DESINSTALACIÓN</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+
+            <td><b>Marca:
+                </b>{{marcaDes.[0].[0]}}</td>
+            <td><b>Modelo:
+                </b>{{modeloDes.[0].[0]}}</td>
+
+        </tr>
+        <tr>
+            <td><b>Año:
+                </b>{{anoDes.[0].[0]}}</td>
+            <td><b>Número economico:
+                </b>{{economicoDes.[0].[0]}}</td>
+        </tr>
+        <tr>
+            <td><b>Placas:
+                </b>{{placasDes.[0].[0]}}</td>
+                      <td><b>VIN:
+                </b>{{vin1.[0].[0]}}</td>
+      </tr>
+
+    </tbody>
+</table>
+
+{{/pf:if}}
+{{#pf:if motivo.[0].[0] "matches" "^((?!Revisión|Desinstalación).)*$"}}
+<table>
+    <thead>
+        <tr>
+            <th colspan="3">FOTOS VEHÍCULO</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{pf:img fotoFrontal.[0].[0] height=150}}</td>
+            <td>{{pf:img fotoCabina.[0].[0] height=150}}</td>
+            <td>{{pf:img fotoOBD1.[0].[0] height=150}}</td>
+
+        </tr>
+        <tr>
+            <td colspan="3">{{pf:img fotoTablero1.[0].[0] height=150}}</td>
+
+        </tr>
+
+    </tbody>
+</table>
+
+<table>
+    <thead>
+        <tr>
+            <th colspan="3">FOTOS INSTALACIÓN</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{pf:img fotoEmpalme.[0].[0] height=150}}</td>
+            <td>{{pf:img fotoConectado.[0].[0] height=150}}</td>
+            <td>{{pf:img fotoFijado.[0].[0] height=150}}</td>
+
+        </tr>
+        <tr>
+            <td>{{pf:img fotoOBD2.[0].[0] height=150}}</td>
+            <td>{{pf:img fotoTablero2.[0].[0] height=150}}</td>
+
+        </tr>
+
+    </tbody>
+</table>
+{{/pf:if}}
+
+{{#pf:if motivo.[0].[0] "is" "Revisión"}}
+
+<table>
+    <thead>
+        <tr>
+            <th colspan="3">FOTOS REVISIÓN</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{pf:img fotoRevLlegada.[0].[0] height=150}}</td>
+            <td>{{pf:img fotoRevLED.[0].[0] height=150}}</td>
+            <td>{{pf:img fotoRevFinal.[0].[0] height=150}}</td>
+
+        </tr>
+        <tr>
+            <td colspan="3">{{pf:img fotoAdicional.[0].[0] height=150}}</td>
+
+        </tr>
+
+    </tbody>
+</table>
+
+{{/pf:if}}
+
+
+{{#pf:if motivo.[0].[0] "matches" "^(Intercambio|Desinstalación)"}}
+<table>
+    <thead>
+        <tr>
+            <th colspan="3">FOTO DESINSTALACIÓN</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+            <td colspan="3">{{pf:img fotoDesinstalado.[0].[0] height=150}}</td>
+
+        </tr>
+
+    </tbody>
+</table>
+{{/pf:if}}
+
+<table>
+    <thead>
+        <tr>
+            <th colspan="2">VALIDACIÓN</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><b>Direccionales:
+                </b>{{direccionales.[0].[0]}}
+            </td>
+            <td><b>Luces Delanteras:
+                </b>{{lucesDelanteras.[0].[0]}}
+            </td>
+        </tr>
+        <tr>
+            <td><b>Stop:
+                </b>{{stop.[0].[0]}}
+            </td>
+            <td><b>Parabrisas:
+                </b>{{parabrisas.[0].[0]}}
+            </td>
+        </tr>
+        <tr>
+            <td><b>Encendedor:
+                </b>{{encendedor.[0].[0]}}
+            </td>
+            <td><b>Radio:
+                </b>{{radio.[0].[0]}}
+            </td>
+        </tr>
+        <tr>
+            <td><b>Claxon:
+                </b>{{claxon.[0].[0]}}
+            </td>
+            <td><b>Aire Acondicionado:
+                </b>{{aireAcondicionado.[0].[0]}}
+            </td>
+        </tr>
+        <tr>
+            <td><b>Cámara de reversa:
+                </b>{{camara.[0].[0]}}
+            </td>
+            <td><b>Espejos:
+                </b>{{espejos.[0].[0]}}
+            </td>
+        </tr>
+        <tr>
+            <td><b>Alarma:
+                </b>{{alarma.[0].[0]}}
+            </td>
+            <td><b>Vidrios eléctricos:
+                </b>{{vidrios.[0].[0]}}
+            </td>
+        </tr>
+        <tr>
+            <td><b>Seguros eléctricos:
+                </b>{{seguros.[0].[0]}}
+            </td>
+            <td><b>Radio:
+                </b>{{radio.[0].[0]}}
+            </td>
+        </tr>
+        <tr>
+            <td><b>¿Enciende algún testigo en el tablero?:
+                </b>{{direccionales3.[0].[0]}}
+            </td>
+            <td><b>¿Cuál?:
+                </b>{{testigoDes.[0].[0]}}
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+
+{{else}}
+<table>
+    <thead>
+        <tr>
+            <th colspan="3">EVIDENCIA</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+            <td colspan="3">{{pf:img fotoVisita.[0] height=150}}</td>
+
+        </tr>
+
+    </tbody>
+</table>
+
+
+
+
+{{/pf:if}}
+
+<table>
+    <thead>
+        <tr>
+            <th colspan="2">FIRMAS Y COMENTARIOS</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            {{#pf:if o.[0].[0] "matches" "."}}
+
+            <td colspan=2><b>Observaciones del servicio:
+                </b>{{o.[0].[0]}}</td>
+            {{/pf:if}}
+
+
+        </tr>
+        <tr>
+            {{#pf:if c.[0] "matches" "."}}
+
+            <td colspan=2><b>Comentarios generales:
+                </b>{{c.[0]}}</td>
+            {{/pf:if}}
+        </tr>
+        {{#pf:if firmaCliente.[0].[0] "matches" "."}}
+
+        <tr>
+            <td>{{pf:img firmaCliente.[0].[0] width=250}}</td>
+            <td>{{pf:img firmaInstalador.[0] width=250}}</td>
+
+        </tr>
+        <tr>
+            <td>____________________________</td>
+            <td>____________________________</td>
+
+        </tr>
+
+        <tr>
+            <td>{{nombreFirmaServicio.[0].[0]}}</td>
+            <td>{{instalador.[0]}}</td>
+
+        </tr>
+        {{else}}
+
+        <tr>
+            <td>{{pf:img firmaClienteFalso.[0] width=250}}</td>
+            <td>{{pf:img firmaInstalador.[0] width=250}}</td>
+
+        </tr>
+        <tr>
+            <td>____________________________</td>
+            <td>____________________________</td>
+
+        </tr>
+
+        <tr>
+            <td>{{nombreVisitaFalso.[0]}}</td>
+            <td>{{instalador.[0]}}</td>
+
+            {{/pf:if}}
+
+    </tbody>
+</table>
+
+{{/with}}
